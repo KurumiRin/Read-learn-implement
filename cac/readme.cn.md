@@ -1,4 +1,4 @@
-[English](./index.md) | [中文](./index.cn.md)
+[English](./readme.en.md) | [中文](./readme.cn.md)
 
 ### 展示 help message
 

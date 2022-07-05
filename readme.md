@@ -2,6 +2,6 @@
 
 ## ① [Cac](https://github.com/cacjs/cac)
 
-Start [Readme](./cac/index.cn.md)
+Start [Readme](./cac/readme.cn.md)
 
 ## ②
