@@ -1,4 +1,4 @@
-<p align="center"></p>
+[English](./index.md) | [中文](./index.cn.md)
 
 ## How to start learn cac
 
