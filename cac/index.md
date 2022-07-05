@@ -36,6 +36,6 @@ cac
 ```
 
 - [`.editorconfig`](./cacFiles/.editorconfig.md)
-- [`gitattributes`]()
+- [`.gitattributes`](./cacFiles/.gitattributes.md)
 - `.github` github 相关配置
   - `FUNDING.yml` 赞助相关的配置文件
