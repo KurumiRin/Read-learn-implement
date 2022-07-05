@@ -1,0 +1,22 @@
+{
+  "name": "read-learn-implement",
+  "version": "0.0.1",
+  "description": "①cac<a href=\"https://github.com/cacjs/cac\"><img src=\"https://img.shields.io/badge/-Github-black.svg\" /></a>",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KurumiRin/Read-learn-implement.git"
+  },
+  "author": "KurumiRin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KurumiRin/Read-learn-implement/issues"
+  },
+  "homepage": "https://github.com/KurumiRin/Read-learn-implement#readme",
+  "dependencies": {
+    "cac": "^6.7.12"
+  }
+}
