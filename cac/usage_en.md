@@ -1,4 +1,4 @@
-[English](./readme.en.md) | [中文](./readme.cn.md)
+[English](./usage_en.md) | [中文](./usage_cn.md)
 
 ## How to start learn cac
 
