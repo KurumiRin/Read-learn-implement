@@ -1,6 +1,14 @@
-<!-- [English](./usage_en.md) | [中文](./usage_cn.md) -->
+[English](./usage_en.md) | [中文](./usage_cn.md)
 
-### 展示 help message
+> npx tsx ./cac/index.ts
+
+执行上面命令后会得到以下输出
+
+> { args: [], options: { '--': [], type: 'index.ts' } }
+
+查看 Demo [demo](./demo.ts).
+
+### 显示帮助信息和版本
 
 ```ts
 cli.option("--name <name>", "Provide your name");
@@ -29,7 +37,7 @@ cli.parse();
 
 所以可以通过链式调用来为某个 `command` 指定特定的选项
 
-### 引用选项
+### 选项名称中的短划线以及如何获取选项
 
 如果在 action 中需要引用选项的名称，应该使用 `camelCase` 来引用 `kebab-case` 的选项
 
@@ -50,27 +58,35 @@ cli.parse();
 
 在命令名中：
 
-- **方括号**：表示可选值
-- **尖括号**：表示必须值
+- **[]**：表示可选值
+- **<>**：表示必须值
 
 在选项值中：
 
-- **尖括号**：string 或者 number
-- **方括号**：true
+- **<>**：string 或者 number
+- **[]**：true
 
 ```ts
-// 这里的 folder 是必选值，下面的 options 的 level 是数字或者 string
 cli
-  .command("deploy <folder>", "Deploy a folder to serve")
+  .command("deploy <folder>", "Deploy a folder to AWS")
   .option("--scale [level]", "Scaling level")
   .action((folder, options) => {
-    console.log({ folder, options });
+    // ...
   });
+
+cli
+  .command("build [project]", "Build a project")
+  .option("--out <dir>", "Output directory")
+  .action((folder, options) => {
+    // ...
+  });
+
+cli.parse();
 ```
 
 ### 否定值
 
-为了支持否定值，需要显示声明否定值的情况
+为了支持否定值，需要手动指定否定选项
 
 ```ts
 // 注意，如果存在 --config，那么否定值必须是 no-xxx
@@ -85,9 +101,7 @@ cli
 
 ### 可变参数
 
-命令的最后一个参数可以是可变的（必须是最后一个参数）
-
-创建一个可变参数就是在中括号值的最开头加上 `...`
+命令的最后一个参数可以是可变的，而且必须只能是最后一个参数，如果需要使用可变参数，就需要在参数名称的开头加上`...`
 
 ```ts
 cli
@@ -95,19 +109,32 @@ cli
   .action((project, otherFiles, options) => {
     console.log({ project, otherFiles, options });
   });
+
+cli
+  .command("build <entry> [...otherFiles]", "Build your app")
+  .option("--foo", "Foo option")
+  .action((entry, otherFiles, options) => {
+    console.log(entry);
+    console.log(otherFiles);
+    console.log(options);
+  });
 ```
 
-若输入 `dev d g f`
+输入 `dev d g f`
 
-那么 `project` 是 `d`，`otherFiles` 是 `[g, f]`
+`project` 是 `d`，`otherFiles` 是 `[g, f]`
 
-### 对象形式的指令
+输入 `build a.js b.js c.js`
 
-cac 还可以接收对象形式的指令，最终表现形式是 `.` 组合
+`entry` 是 `a.js` 、 `otherFiles` 是 `b.js c.js`
+
+### 点嵌套选项(对象形式的指令)
+
+cac 可以点嵌套选项也就是接收对象形式的指令，将合并为一个选项。最终表现形式是 `.` 组合，
 
 ```ts
-// build --env.bar baz --env.foo foo2
-// console this: { '--': [], env: { bar: 'baz', foo: 'foo2' } }
+// build --env.foo foo --env.bar bar
+// console this: { '--': [], env: { foo: 'foo', bar: 'bar' } }
 cli
   .command("build", "desc")
   .option("--env <env>", "set env")
@@ -116,9 +143,9 @@ cli
   });
 ```
 
-### 默认的 command
+### 默认命令
 
-注册一个指令，如果没有触发任何指令，那么这个默认指令就会被触发
+注册一个指令，如果没有匹配到其他指令，那么这个指令就会作为默认指令被触发
 
 ```ts
 // a b c --mini
@@ -131,7 +158,7 @@ cli
   });
 ```
 
-### 给定一个数组值
+### 提供一个数组作为选项值
 
 ```bash
 node cli.js --include project-a

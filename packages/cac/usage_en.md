@@ -60,22 +60,30 @@ In the command name, cac supports both `[]` square brackets and `<>` pointed bra
 
 In the command name.
 
-- **Square brackets**: indicates optional values
-- **Pointed brackets**: indicates mandatory values
+- **[]**: indicates optional values
+- **<>**: indicates mandatory values
 
 In the option value.
 
-- **sharp brackets**: string or number
-- **Square brackets**: true
+- **<>**: string or number
+- **[]**: true
 
 ```ts
-// The folder here is a mandatory value, the level of the following options is a number or string
 cli
-  .command("deploy <folder>", "Deploy a folder to serve")
+  .command("deploy <folder>", "Deploy a folder to AWS")
   .option("--scale [level]", "Scaling level")
   .action((folder, options) => {
-    console.log({ folder, options });
+    // ...
   });
+
+cli
+  .command("build [project]", "Build a project")
+  .option("--out <dir>", "Output directory")
+  .action((folder, options) => {
+    // ...
+  });
+
+cli.parse();
 ```
 
 ### Negative value
