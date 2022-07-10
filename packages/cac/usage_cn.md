@@ -1,4 +1,4 @@
-[English](./usgae_en.md) | [中文](./usage_cn.md)
+[English](./usage_en.md) | [中文](./usage_cn.md)
 
 ### 展示 help message
 
