@@ -35,7 +35,10 @@ cac
 └─ yarn.lock
 ```
 
-- [`.editorconfig`](./cacFiles/.editorconfig.md)
-- [`.gitattributes`](./cacFiles/.gitattributes.md)
+- [`.editorconfig`](../../common/.editorconfig.md)
+- [`.gitattributes`](../../common/.gitattributes.md)
 - `.github` github 相关配置
   - `FUNDING.yml` 赞助相关的配置文件
+  - `ISSUE_TEMPLATE.yaml` ISSUE 模板，提 ISSUE 时 Github 自动识别读取注入。
+- `.gitignore`
+- `.prettierrc`
