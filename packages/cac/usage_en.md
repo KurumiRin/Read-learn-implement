@@ -1,5 +1,3 @@
-[English](./usage_en.md) | [中文](./usage_cn.md)
-
 ## How to start learn cac
 
 > npx tsx ./cac/index.ts
